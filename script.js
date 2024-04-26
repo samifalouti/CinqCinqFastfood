@@ -315,7 +315,7 @@ function renderProducts(products) {
 
 
   function validateForm() {
-    if (fullNameInput.value.trim() !== '' && numberInput.value.trim() !== '' && productOptions.value.trim() !== '') {
+    if (fullNameInput.value.trim() !== '' && numberInput.value.trim() !== '' && productOptions.value.trim() !== '' && quantityInput.value.trim() !== '') {
         sendButton.disabled = true;
         sendButton.style.opacity = 1;
     }
