@@ -102,8 +102,8 @@ function addToCart(product) {
   quantityInput.value = 1; 
   quantityInput.min = 1; 
   quantityInput.classList.add('quantity-input');
-  quantityInput.addEventListener('change', function() {
-    updateQuantityInput(this, product.name);
+  quantityInput.addEventListener('input', function() {
+    updateTitleInput(product.name, this.value);
   });
 
   const titleInput = document.getElementById('titleInput');
@@ -111,6 +111,9 @@ function addToCart(product) {
 
   const priceInput = document.getElementById('priceInput');
   priceInput.value += product.price + ', ';
+
+  updateTitleInput(product.name, 1);
+  updatePriceInput(product.price);
 
   const removeIcon = document.createElement('img');
   removeIcon.src = './icons/delete.png';
@@ -133,11 +136,14 @@ function addToCart(product) {
   updateCartIcon();
 }
 
-function updateQuantityInput(inputElement, productName) {
+function updateTitleInput(productName, quantity) {
   const titleInput = document.getElementById('titleInput');
-  const quantity = inputElement.value;
-  const updatedTitle = `${quantity} ${productName}`;
-  titleInput.value = titleInput.value.replace(new RegExp(quantity + ' ' + productName), updatedTitle);
+  titleInput.value = `${quantity} ${productName}`;
+}
+
+function updatePriceInput(price) {
+  const priceInput = document.getElementById('priceInput');
+  priceInput.value = price;
 }
 
 function removeCartItem(item, itemPrice) {
