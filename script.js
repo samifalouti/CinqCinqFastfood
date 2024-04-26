@@ -114,7 +114,6 @@ function addToCart(product) {
   cartItem.appendChild(img);
   cartItem.appendChild(name);
   cartItem.appendChild(price);
-  cartItem.appendChild(quantityInput);
   cartItem.appendChild(removeIcon);
 
   cartItemsContainer.appendChild(cartItem);
