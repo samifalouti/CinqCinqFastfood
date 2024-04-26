@@ -97,23 +97,11 @@ function addToCart(product) {
   price.style.fontSize = '12px';
   price.style.marginLeft = '10px';
 
-  const quantityInput = document.createElement('input');
-  quantityInput.type = 'number';
-  quantityInput.value = 1; 
-  quantityInput.min = 1; 
-  quantityInput.classList.add('quantity-input');
-  quantityInput.addEventListener('input', function() {
-    updateTitleInput(product.name, this.value);
-  });
-
   const titleInput = document.getElementById('titleInput');
   titleInput.value += product.name + ', ';
 
   const priceInput = document.getElementById('priceInput');
   priceInput.value += product.price + ', ';
-
-  updateTitleInput(product.name, 1);
-  updatePriceInput(product.price);
 
   const removeIcon = document.createElement('img');
   removeIcon.src = './icons/delete.png';
@@ -132,18 +120,8 @@ function addToCart(product) {
   cartItemsContainer.appendChild(cartItem);
 
   // Update total price
-  totalPrice += parseFloat(product.price.replace(' DA', '')) * parseInt(quantityInput.value); // Adjust total price by quantity
+  totalPrice += parseFloat(product.price.replace(' DA', '')); // Remove ' DA' and convert to number
   updateCartIcon();
-}
-
-function updateTitleInput(productName, quantity) {
-  const titleInput = document.getElementById('titleInput');
-  titleInput.value = `${quantity} ${productName}`;
-}
-
-function updatePriceInput(price) {
-  const priceInput = document.getElementById('priceInput');
-  priceInput.value = price;
 }
 
 function removeCartItem(item, itemPrice) {
