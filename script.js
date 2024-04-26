@@ -30,7 +30,6 @@ const cartItemsContainer = document.getElementById('cart-items-container');
 
 fullNameInput.addEventListener('input', validateForm);
 numberInput.addEventListener('input', validateForm);
-quantityInput.addEventListener('input', validateForm);
 
 cartIcon.addEventListener('click', () => {
   cartWindow.classList.toggle('show');
@@ -103,6 +102,9 @@ function addToCart(product) {
   quantityInput.value = 1; 
   quantityInput.min = 1; 
   quantityInput.classList.add('quantity-input');
+  quantityInput.addEventListener('change', function() {
+    updateQuantityInput(this, product.name);
+  });
 
   const titleInput = document.getElementById('titleInput');
   titleInput.value += product.name + ', ';
@@ -129,6 +131,13 @@ function addToCart(product) {
   // Update total price
   totalPrice += parseFloat(product.price.replace(' DA', '')); // Remove ' DA' and convert to number
   updateCartIcon();
+}
+
+function updateQuantityInput(inputElement, productName) {
+  const titleInput = document.getElementById('titleInput');
+  const quantity = inputElement.value;
+  const updatedTitle = `${quantity} ${productName}`;
+  titleInput.value = titleInput.value.replace(new RegExp(quantity + ' ' + productName), updatedTitle);
 }
 
 function removeCartItem(item, itemPrice) {
@@ -315,7 +324,7 @@ function renderProducts(products) {
 
 
   function validateForm() {
-    if (fullNameInput.value.trim() !== '' && numberInput.value.trim() !== '' && productOptions.value.trim() !== '' && quantityInput.value.trim() !== '') {
+    if (fullNameInput.value.trim() !== '' && numberInput.value.trim() !== '' && productOptions.value.trim() !== '') {
         sendButton.disabled = true;
         sendButton.style.opacity = 1;
     }
