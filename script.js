@@ -132,7 +132,7 @@ function addToCart(product) {
   cartItemsContainer.appendChild(cartItem);
 
   // Update total price
-  totalPrice += parseFloat(product.price.replace(' DA', '')); // Remove ' DA' and convert to number
+  totalPrice += parseFloat(product.price.replace(' DA', '')) * parseInt(quantityInput.value); // Adjust total price by quantity
   updateCartIcon();
 }
 
