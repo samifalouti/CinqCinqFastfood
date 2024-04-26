@@ -30,6 +30,7 @@ const cartItemsContainer = document.getElementById('cart-items-container');
 
 fullNameInput.addEventListener('input', validateForm);
 numberInput.addEventListener('input', validateForm);
+quantityInput.addEventListener('input', validateForm);
 
 cartIcon.addEventListener('click', () => {
   cartWindow.classList.toggle('show');
