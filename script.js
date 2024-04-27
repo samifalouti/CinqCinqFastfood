@@ -27,6 +27,20 @@ const cartIcon = document.getElementById('cart-icon');
 const cartItems = document.getElementById('cart-items');
 const cartWindow = document.getElementById('cart-window');
 const cartItemsContainer = document.getElementById('cart-items-container');
+const menuIcon = document.getElementById('menu-icon');
+const settingsIcon = document.getElementById('settings-icon');
+const menuWindow = document.getElementById('menu-window');
+const settingsWindow = document.getElementById('settings-window');
+
+menuIcon.addEventListener('click', () => {
+  console.log("Menu icon clicked");
+  menuWindow.classList.toggle('show');
+});
+
+settingsIcon.addEventListener('click', () => {
+  console.log("Settings icon clicked");
+  settingsWindow.classList.toggle('show');
+});
 
 fullNameInput.addEventListener('input', validateForm);
 numberInput.addEventListener('input', validateForm);
@@ -38,6 +52,14 @@ cartIcon.addEventListener('click', () => {
 window.addEventListener('click', (event) => {
   if (!cartWindow.contains(event.target) && event.target !== cartIcon) {
     cartWindow.classList.remove('show');
+  }
+
+  if (!menuWindow.contains(event.target) && event.target !== menuIcon) {
+    menuWindow.classList.remove('show');
+  }
+
+  if (!settingsWindow.contains(event.target) && event.target !== settingsIcon) {
+    settingsWindow.classList.remove('show');
   }
 });
 
@@ -324,3 +346,6 @@ function renderProducts(products) {
     });
   };
   
+  
+  
+
